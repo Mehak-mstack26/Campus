@@ -1,0 +1,503 @@
+body {
+    background-color: black; /* As per your CSS and target image */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Consistent font */
+    color: white;
+    /* Styles from your 'body' moved to .main-page-container for React context */
+}
+
+.main-page-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex; /* From your 'body' styles */
+    justify-content: flex-start; /* Changed from center to allow header to span top */
+    flex-direction: column;    /* From your 'body' styles */
+    align-items: center;       /* From your 'body' styles */
+    padding: 20px 40px; /* Overall padding from your 'body', adjust if needed */
+    box-sizing: border-box;
+}
+
+/* Header Styles */
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* ESSENTIAL for target image layout */
+    width: 100%; /* Ensure header spans full width of its container */
+    margin-bottom: 30px; /* Space below header */
+    /* Removed margin-left: -100px; padding-left: 50px; from your "correct CSS" as they conflict with space-between */
+}
+
+.top-left-content { /* This was .top in your "correct CSS" */
+    display: flex;
+    align-items: center;
+    /* justify-content: center; /* Removed - not needed with space-between on parent */
+    /* text-align: center; /* Removed - not needed for this group */
+    /* margin-left: 170px; /* REMOVED - Caused misalignment */
+    gap: 25px; /* Adjusted from 120px - for space between "Back" button and "Heading" */
+}
+
+.heading { /* From your "correct CSS" */
+    color: #51C2FF;
+    font-size: 1.75rem; /* Matches target image */
+    font-weight: 600; /* Added for consistency */
+    margin: 0;
+}
+
+.top-btn { /* Style for "Back to Homepage" button */
+    margin-top: 0; /* Override .book-btn margin if any */
+}
+.top-btn i {
+    margin-right: 8px;
+}
+
+/* Notification Styles */
+.notification_wrap { /* From your "correct CSS" */
+    position: relative;
+    /* width: 500px; /* Removed - let it size to content */
+    /* margin: 120px auto 0; /* Removed - positioning handled by flex parent */
+    /* margin-top: 15px; /* Removed - flex parent handles alignment */
+    /* margin-right: -100px; /* Removed - caused offset */
+    flex-shrink: 0; /* Prevent it from shrinking */
+}
+
+.notification_icon { /* From your "correct CSS" */
+    position: relative;
+    width: 45px; /* Adjusted for visual balance with target image */
+    height: 45px;
+    font-size: 28px; /* Adjusted for visual balance */
+    /* margin: 0 auto; /* Removed - alignment by flex parent */
+    text-align: center;
+    color: #51C2FF;
+    /* margin-top: -3000px; */ /* === CRITICAL FIX: This line was making the bell disappear === */
+    display: flex; /* To center the icon itself */
+    align-items: center;
+    justify-content: center;
+}
+
+.notification_wrap .notification_icon .fa-bell { /* From your "correct CSS" */
+    cursor: pointer;
+}
+
+.notification_wrap .dropdown { /* From your "correct CSS", minor tweaks for target */
+    width: 320px; /* Adjusted from 350px */
+    height: auto;
+    background: #181818; /* Darker background */
+    color: #e0e0e0;
+    border-radius: 6px; /* Softer radius */
+    border: 1px solid #333; /* Darker border */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4); /* Softer shadow */
+    padding: 15px;
+    position: absolute;
+    top: calc(100% + 10px); /* Position dropdown below notification icon */
+    right: 0; /* Align to the right */
+    left: auto;
+    transform: none; /* Removed translateX(-50%) */
+    display: none; /* Handled by 'active' class */
+    z-index: 10000;
+}
+
+.notification_wrap .dropdown .notify_item { /* From your "correct CSS" */
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #383838; /* Darker border */
+    text-align: center;
+}
+
+.notify_info { /* From your "correct CSS" */
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.notification_wrap .dropdown .notify_item:last-child { /* From your "correct CSS" */
+    border-bottom: 0px;
+}
+
+.notification_wrap .dropdown .notify_item .notify_info p { /* From your "correct CSS" */
+    margin-bottom: 8px; /* Adjusted */
+    font-size: 0.95rem; /* Adjusted */
+}
+
+.notification_wrap .dropdown .notify_item .notify_info p span { /* From your "correct CSS" */
+    color: #51C2FF;
+    margin-left: 5px;
+    font-weight: bold; /* Added */
+}
+
+.notification_wrap .dropdown:before { /* From your "correct CSS", adjusted */
+    content: "";
+    position: absolute;
+    top: -9px; /* Adjusted */
+    right: 15px; /* Align with icon area */
+    transform: none; /* Removed translateX */
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid #181818; /* Match dropdown background */
+}
+
+.notification_wrap .dropdown.active { /* From your "correct CSS" */
+    display: block;
+}
+
+/* Main Content Area */
+.main-content-area { /* This was .main in your "correct CSS" */
+    display: flex;
+    align-items: flex-start; /* Align grid to the top if page is taller */
+    justify-content: center; /* Center the card-grid */
+    width: 100%;
+    flex-grow: 1; /* Take remaining vertical space */
+}
+
+/* student profile section styles */
+.card-grid { /* From your "correct CSS" */
+    display: grid;
+    padding: 0; /* Padding handled by .main-page-container */
+    /* padding: 50px; /* This padding from "correct CSS" might be too much if .main-page-container also has padding */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Use auto-fit for responsiveness */
+    /* grid-template-columns: repeat(3, 1fr); /* Original from "correct CSS", less responsive */
+    gap: 3rem; /* Target image has good gap (4rem from "correct CSS" is also fine) */
+    /* align-content: center; /* Not strictly necessary */
+    /* justify-content: center; /* Grid itself centered by .main-content-area */
+    width: 100%;
+    max-width: 1100px; /* Limit width for 3 cards, adjust as needed */
+}
+
+.card { /* From your "correct CSS" */
+    position: relative;
+    width: 320px; /* Fixed width from "correct CSS" */
+    height: 480px; /* Adjusted to match target image slightly better (was 460px) */
+    border-radius: 14px;
+    z-index: 1111;
+    overflow: hidden;
+    /* display, flex-direction, etc. are for the .bg content container */
+    margin: 0 auto; /* If grid columns are wider than card, this centers card in its cell */
+}
+
+.bg { /* From your "correct CSS" */
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 310px; /* Was 300px, adjusted to fill card (320px - 2*5px border space) - 2*thickness of outline */
+    height: 470px; /* Was 440px, adjusted to fill card (480px - 2*5px border space) - 2*thickness of outline */
+    z-index: 2;
+    background: #0D0D0D; /* Very dark grey, from target image card background */
+    backdrop-filter: blur(20px); /* Adjusted from 24px */
+    border-radius: 10px;
+    overflow: hidden; /* Important for border-radius */
+    outline: 1.5px solid #2A2A2A; /* Subtle outline from target image */
+    display: flex;
+    justify-content: flex-start; /* Align content to top */
+    align-items: center; /* Center content horizontally */
+    flex-direction: column;
+    color: white;
+    text-align: center;
+    padding: 20px 15px; /* Vertical, Horizontal padding */
+    box-sizing: border-box;
+}
+
+.bg img { /* From your "correct CSS" */
+    height: 90px; /* Target image */
+    width: 90px;  /* Target image */
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 12px; /* Space below image */
+}
+
+.bg h3 { /* Mentor Name */
+    font-size: 1.3rem; /* Target image */
+    font-weight: 500; /* Target image */
+    margin-top: 0;
+    margin-bottom: 8px; /* Space below name */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bg p { /* Mentor Description */
+    font-size: 0.82rem; /* Target image */
+    /* margin-top: -10px; /* From "correct CSS", but 0 looks better with flex layout */
+    margin-top: 0;
+    color: #89CFF0; /* Light blue from target image */
+    margin-bottom: 18px; /* More space below description */
+    line-height: 1.45;
+    max-width: 90%;
+}
+
+.blob {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background-color: #51C2FF;
+    opacity: 1;
+    filter: blur(12px);
+    animation: blob-bounce 5s infinite ease;
+  }
+  
+  @keyframes blob-bounce {
+    0% {
+      transform: translate(-100%, -100%) translate3d(0, 0, 0);
+    }
+  
+    25% {
+      transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+    }
+  
+    50% {
+      transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+    }
+  
+    75% {
+      transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+    }
+  
+    100% {
+      transform: translate(-100%, -100%) translate3d(0, 0, 0);
+    }
+  }
+
+.btn-container { /* Wrapper for radio inputs, as in your HTML example */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; /* Space below time slots */
+}
+
+.radio-input { /* From your "correct CSS", adjusted for TARGET IMAGE */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 0.8rem; /* Target image */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 0.8rem; /* Target image */
+    font-weight: 500; /* Target image */
+    color: #b0b0b0; /* Default text color in slots, Target image */
+    /* margin-left: 12px; /* Removed, grid handles centering */
+    max-width: 210px;
+}
+
+.radio-input input[type="radio"] { /* From your "correct CSS" */
+    display: none;
+}
+
+.radio-input label { /* Adjusted for TARGET IMAGE */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Dot on left, text next */
+    padding: 8px 10px;
+    border: 1px solid #2F2F2F; /* Target image border for slot */
+    background-color: #1A1A1A; /* Target image background for slot */
+    border-radius: 5px;
+    /* margin-right: 12px; /* Removed, gap handled by grid */
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+    min-width: 90px;
+    white-space: nowrap;
+}
+
+.radio-input label:before { /* Radio dot, styled for TARGET IMAGE */
+    content: "";
+    display: block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: #777; /* Default dot color - TARGET IMAGE */
+    border: 1px solid #555; /* Default dot border - TARGET IMAGE */
+    transition: all 0.2s ease-in-out;
+    margin-right: 10px; /* Space between dot and text */
+    /* position: absolute; top: 50%; left: 0; transform: translate(-50%, -50%); /* Original from "correct CSS" */
+}
+
+.radio-input input[type="radio"]:checked + label:before { /* CHECKED dot - TARGET IMAGE */
+    background-color: white;
+    border-color: #ccc;
+    /* top: 0; /* Removed from "correct CSS" */
+}
+
+.radio-input input[type="radio"]:checked + label { /* CHECKED label text - TARGET IMAGE */
+    /* background-color: royalblue; /* REMOVED - target label bg does not change */
+    color: #e0e0e0; /* Slightly brighter text for selected time - TARGET IMAGE */
+    /* border-color: rgb(129, 235, 129); /* REMOVED - target border does not change */
+    /* animation: radio-translate 0.5s ease-in-out; /* REMOVED - target has no animation here */
+}
+
+/* @keyframes radio-translate { ... } /* REMOVED as no animation on label for target */
+
+.card-div-btn { /* From your "correct CSS" */
+    display: flex;
+    gap: 12px; /* Adjusted from 10px */
+    justify-content: center;
+    width: 100%;
+    margin-top: auto; /* Pushes buttons to bottom */
+    padding-top: 15px; /* Space above buttons */
+}
+
+.book-btn { /* From your "correct CSS", minor tweaks for target appearance */
+    --clr-font-main: hsla(0 0% 20% / 100);
+    --btn-bg-1: hsla(194 100% 69% / 1);
+    --btn-bg-2: hsla(217 100% 56% / 1);
+    --btn-bg-color: hsla(360 100% 100% / 1);
+    --radii: 0.45em; /* Target image button radius */
+    cursor: pointer;
+    padding: 0.75em 1.5em; /* Target image button padding */
+    min-width: 95px; /* Target image */
+    min-height: 38px;
+    font-size: var(--size, 0.88rem); /* Target image text size */
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-weight: 500;
+    transition: 0.6s;
+    background-size: 280% auto;
+    background-image: linear-gradient(325deg, var(--btn-bg-2) 0%, var(--btn-bg-1) 55%, var(--btn-bg-2) 90%);
+    border: none;
+    border-radius: var(--radii);
+    color: var(--btn-bg-color);
+    box-shadow: 0px 2px 8px rgba(50, 150, 255, 0.25), /* Target image shadow */
+                inset 0px 1px 1px rgba(200, 230, 255, 0.3), 
+                inset 0px -1px 1px rgba(30, 100, 200, 0.2);
+    margin-top: 0; /* Removed from 20px, margin handled by parent or context */
+}
+
+.book-btn:hover { /* From your "correct CSS" */
+    background-position: right top;
+    box-shadow: 0px 4px 12px rgba(50, 150, 255, 0.35), /* Target image hover shadow */
+                inset 0px 1px 1px rgba(220, 240, 255, 0.4),
+                inset 0px -1px 1px rgba(40, 110, 210, 0.3);
+}
+
+.book-btn:is(:focus, :focus-visible, :active) { /* From your "correct CSS" */
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.7), 0 0 0 4px var(--btn-bg-1); /* Target image focus */
+}
+
+/* @media (prefers-reduced-motion: reduce) { ... } /* From "correct CSS", unchanged */
+
+.popup { /* From your "correct CSS", adjusted for target */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: auto;
+    min-height: 280px;
+    width: 90%;
+    max-width: 420px;
+    transform: translate(-50%, -50%);
+    background-color: #f0f0f0; /* Light bg for popup */
+    color: #222; /* Dark text for popup */
+    border-radius: 8px; /* Softer radius */
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Adjusted shadow */
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.popup p { /* From your "correct CSS" */
+    margin: 12px 0;
+    font-size: 1.1rem;
+    font-family: 'Spartan',sans-serif;
+    color: #222; /* Ensure dark text */
+}
+
+.popup strong { /* From your "correct CSS" */
+    font-weight: bold;
+}
+
+.popup i.fa-circle-check { /* From your "correct CSS", specific for icon */
+    font-size: 55px; /* Adjusted */
+    margin-bottom: 20px;
+    color: green !important;
+}
+.popup hr {
+    border: none;
+    height: 1px;
+    background-color: #ccc;
+    width: 80%;
+    margin: 15px 0;
+}
+
+.online-status-indicator { /* From your "correct CSS", styled for target */
+    width: 10px; /* Target image */
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 8px;
+    border: 1px solid #111; /* Target image */
+    vertical-align: middle;
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 992px) { /* For 2 cards per row */
+    .card-grid {
+        max-width: calc(320px * 2 + 3rem); /* (Card width * 2) + gap */
+    }
+     .heading {
+        font-size: 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 768px) { /* From your "correct CSS" for 1 card */
+    .main-page-container {
+        padding: 20px;
+    }
+    .header-top {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+    .top-left-content {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    .heading {
+        font-size: 1.4rem;
+        white-space: normal;
+    }
+    .card-grid {
+        grid-template-columns: 1fr; /* Ensures single column */
+        max-width: 350px; /* Max width for single card layout */
+        margin: 0 auto; /* Center single column */
+    }
+    .card {
+        width: 100%; /* Card takes full width of its grid cell */
+        max-width: 320px; /* But not more than original fixed width */
+        height: auto;
+        min-height: 470px; /* Ensure enough space */
+    }
+     .bg { /* Ensure .bg also resizes if .card does */
+        width: calc(100% - 10px);
+        height: calc(100% - 10px);
+    }
+}
+
+@media only screen and (max-width: 480px) { /* Smaller mobile */
+    .main-page-container {
+        padding: 15px;
+    }
+    .heading { font-size: 1.3rem; }
+    .top-btn { font-size: 0.85rem; padding: 0.6em 1.1em; }
+
+    .bg h3 { font-size: 1.2rem; }
+    .bg p { font-size: 0.8rem; line-height: 1.4; }
+
+    .card-div-btn {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    .card-div-btn .book-btn {
+        width: 90%;
+    }
+     .radio-input {
+      max-width: 190px;
+    }
+    .radio-input label { font-size: 0.75rem; padding: 7px 8px; min-width: 80px;}
+}

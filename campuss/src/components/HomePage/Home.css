@@ -1,0 +1,275 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "futura md bt";
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background: black !important;
+    min-height: 100%;
+    line-height: 1.6;
+    overflow-y: auto;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header Styles - Keep As Is from your provided CSS */
+header {
+    background: black;
+    width: 100%;
+    padding: 15px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+header .logo { font-size: 30px; text-transform: uppercase; color: #51C2FF; }
+header nav ul { display: flex; align-items: center; }
+header nav ul li a { display: inline-block; color: white; padding: 5px 0; margin: 0 10px; border: 3px solid transparent; text-transform: uppercase; transition: 0.2s; text-decoration: none; }
+header nav ul li a:hover, header nav ul li a.active { border-bottom-color: #51C2FF; }
+.hamburger { cursor: pointer; display: none; }
+.hamburger div { width: 30px; height: 3px; margin: 5px 0; background: white; }
+@media only screen and (max-width: 900px) { header { padding: 15px 30px; } }
+@media only screen and (max-width: 700px) {
+    .hamburger { display: block; }
+    header nav { position: absolute; width: 100%; left: -100%; top: 70px; background: #fff; padding: 30px; transition: 0.3s; z-index: 1000; }
+    header #nav_check:checked ~ nav { left: 0; }
+    header nav ul { display: block; }
+    header nav ul li a { margin: 5px 0; color: black; }
+    header nav ul li a:hover, header nav ul li a.active { border-bottom-color: #51C2FF; color: #51C2FF; }
+}
+.nav-btn { margin-left: 20px; }
+
+
+/* Hero Section (Bootstrap Carousel) Styles */
+.hero {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    flex-shrink: 0;
+    background-color: #080808; /* Slightly different dark bg for hero if needed */
+}
+/* Ensure Bootstrap carousel takes appropriate width */
+.hero #carouselExampleIndicators {
+    width: 90%;
+    max-width: 900px; /* Or your preferred max-width */
+}
+.hero #carouselExampleIndicators .carousel-item img {
+    max-height: 65vh; /* Control height of hero images */
+    object-fit: cover; /* Cover the area, may crop */
+    border-radius: 8px; /* Optional: rounded corners for hero images */
+}
+
+/* Button Container Styles - Keep As Is */
+.btn-container { text-align: center; padding: 50px 0; flex-shrink: 0; }
+.connect-btn { /* ... Your existing connect-btn styles ... */
+    --clr-font-main: hsla(0 0% 20% / 100); --btn-bg-1: hsla(194 100% 69% / 1); --btn-bg-2: hsla(217 100% 56% / 1); --btn-bg-color: hsla(360 100% 100% / 1); --radii: 0.5em; cursor: pointer; padding: 0.9em 1.4em; min-width: 120px; min-height: 44px; font-size: var(--size, 1rem); font-family: "Segoe UI", system-ui, sans-serif; font-weight: 500; transition: 0.8s; background-size: 280% auto; background-image: linear-gradient(325deg, var(--btn-bg-2) 0%, var(--btn-bg-1) 55%, var(--btn-bg-2) 90%); border: none; border-radius: var(--radii); color: var(--btn-bg-color); box-shadow: 0px 0px 20px rgba(71, 184, 255, 0.5), 0px 5px 5px -1px rgba(58, 125, 233, 0.25), inset 4px 4px 8px rgba(175, 230, 255, 0.5), inset -4px -4px 8px rgba(19, 95, 216, 0.35); }
+.connect-btn:hover { background-position: right top; }
+.connect-btn:is(:focus, :focus-visible, :active) { outline: none; box-shadow: 0 0 0 3px var(--btn-bg-color), 0 0 0 6px var(--btn-bg-2); }
+@media (prefers-reduced-motion: reduce) { .connect-btn { transition: linear; } }
+
+
+/* --- Testimonial Section Styles --- */
+.testimonials {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px; /* Increased top/bottom padding */
+    color: #51C2FF; /* Default text color for this section */
+    width: 100%;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+.testimonials h1 {
+    font-size: 2.5rem; /* Larger heading */
+    margin-bottom: 50px; /* Increased space below heading */
+    font-weight: 600;
+}
+
+.testimonial-wrapper { /* This is the div with className="wrapper" for testimonials */
+    max-width: 1200px; /* Max width of the bordered area */
+    width: 90%;     /* Responsive width */
+    position: relative;
+    padding: 30px 70px; /* Top/Bottom padding, Left/Right padding FOR ARROWS */
+    border-radius: 20px; /* Rounded corners for the border */
+    box-shadow: 0 0 20px 7px rgba(81, 194, 255, 0.6), /* Outer glow */
+                inset 0 0 15px 3px rgba(81, 194, 255, 0.4); /* Inner glow */
+    background-color: rgba(10, 25, 40, 0.3); /* Optional: Slightly transparent dark bg for the wrapper */
+    box-sizing: border-box;
+    margin: 0 auto; /* Center the wrapper if testimonials section is wider */
+}
+
+i.testimonial-arrow { /* Common style for testimonial arrows */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 45px;
+    width: 45px;
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    color: #007bff; /* Arrow color */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+    z-index: 20; /* Ensure arrows are above cards */
+}
+i.testimonial-arrow:hover {
+    background-color: #ffffff;
+    transform: translateY(-50%) scale(1.1);
+}
+i.testimonial-arrow#left {
+    left: 15px; /* Position inside the wrapper's padding */
+}
+i.testimonial-arrow#right {
+    right: 15px; /* Position inside the wrapper's padding */
+}
+
+.testimonial-carousel-items { /* The UL for testimonial cards */
+    display: grid;
+    grid-auto-flow: column;
+    /* Adjust for 3 cards visible, considering the gap */
+    grid-auto-columns: calc((100% / 3) - (16px * 2 / 3)); /* (100% / num_cards) - (gap * (num_cards - 1) / num_cards) */
+    gap: 24px; /* Increased gap between cards */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth; /* JS handles smooth for arrows, this is for manual scroll */
+    padding: 10px 0; /* Some vertical padding if cards have different heights slightly */
+    scrollbar-width: none; /* Firefox */
+}
+.testimonial-carousel-items::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+.testimonial-carousel-items.dragging {
+    scroll-snap-type: none; /* Allow free dragging */
+    scroll-behavior: auto;
+}
+.testimonial-carousel-items.dragging .card {
+    cursor: grabbing;
+    user-select: none;
+}
+.testimonial-carousel-items .card {
+    scroll-snap-align: start; /* Snap to start of card */
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 380px; /* Ensure cards have a consistent min height */
+    height: auto; /* Allow to grow if content is longer */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: grab;
+}
+.testimonial-carousel-items .card:hover {
+    transform: translateY(-5px); /* Optional hover effect */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.testimonial-carousel-items .card .img {
+    width: 100px; /* Larger image container */
+    height: 100px;
+    border-radius: 50%;
+    background: #e0f7ff; /* Lighter background for image circle */
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    overflow: hidden; /* Ensure image is contained */
+    border: 3px solid #51C2FF;
+}
+.testimonial-carousel-items .card .img img {
+    width: 100%; /* Make image fill the circle */
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%; /* Image itself should also be round if not already */
+    /* border: none; /* Remove previous border from here if img container has one */
+}
+.testimonial-carousel-items .card h2 {
+    font-size: 1.5rem; /* Card title name */
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.testimonial-carousel-items .card span { /* Description */
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+    flex-grow: 1; /* Allow description to take available space */
+}
+
+/* Responsive Testimonial Carousel */
+@media screen and (max-width: 1024px) {
+    .testimonial-wrapper {
+        padding: 25px 60px; /* Adjust padding for arrows */
+    }
+    .testimonial-carousel-items {
+        grid-auto-columns: calc((100% / 2) - (24px * 1 / 2)); /* 2 cards */
+    }
+}
+@media screen and (max-width: 768px) {
+    .testimonial-wrapper {
+        width: 95%;
+        padding: 20px 50px; /* Padding for arrows on smaller screens */
+    }
+    i.testimonial-arrow { height: 40px; width: 40px; font-size: 1rem; }
+    i.testimonial-arrow#left { left: 8px; }
+    i.testimonial-arrow#right { right: 8px; }
+
+    .testimonial-carousel-items {
+        grid-auto-columns: calc(100% - 10px); /* 1 card, with small side margins implied by gap */
+        gap: 10px; /* Reduce gap for single card view if needed */
+        padding: 10px 5px; /* Adjust padding if showing single full card */
+    }
+    .testimonials h1 { font-size: 2.2rem; margin-bottom: 40px; }
+    .testimonial-carousel-items .card { min-height: 360px; padding: 20px; }
+    .testimonial-carousel-items .card .img { width: 90px; height: 90px; }
+    .testimonial-carousel-items .card h2 { font-size: 1.3rem; }
+}
+
+
+/* Contact Section Styles - Keep As Is from your provided CSS */
+.container { width: 100%; display: flex; justify-content: center; align-items: center; padding: 50px 8%; background-color: #0a0a0a; flex-shrink: 0; margin-top: auto; }
+.container .row { display: flex; justify-content: space-between; width: 100%; max-width: 1300px; }
+.row section.col { display: flex; flex-direction: column; }
+.row section.left { flex-basis: 35%; min-width: 300px; margin-right: 40px; }
+.row section.right { flex-basis: 60%; }
+section.left .contactTitle h2 { position: relative; font-size: 28px; color: #ddd; display: inline-block; margin-bottom: 25px; }
+section.left .contactTitle h2::before { content: ''; position: absolute; width: 50%; height: 1px; background-color: #888; top: 120%; left: 0; }
+section.left .contactTitle h2::after { content: ''; position: absolute; width: 25%; height: 3px; background-color: #51C2FF; top: calc(120% - 1px); left: 0; }
+section.left .contactInfo { margin-bottom: 16px; }
+.contactInfo .iconGroup { display: flex; align-items: center; margin: 25px 0px; }
+.iconGroup .icon { width: 45px; height: 45px; border: 2px solid #51C2FF; border-radius: 50%; margin-right: 20px; position: relative; flex-shrink: 0; }
+.iconGroup .icon i { font-size: 20px; color: #ddd; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.iconGroup .details span { display: block; color: #888; font-size: 18px; }
+.iconGroup .details span:nth-child(1) { text-transform: uppercase; color: #ccc; }
+section.left .socialMedia { display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap; margin: 22px 0px 20px; }
+.socialMedia a { width: 35px; height: 35px; text-decoration: none; text-align: center; margin-right: 15px; border-radius: 5px; background-color: #51C2FF; transition: 0.4s; display: flex; align-items: center; justify-content: center; }
+.socialMedia a i { color: #ddd; font-size: 18px; }
+.socialMedia a:hover { transform: translateY(-5px); background-color: #2e2e2e; border: 1px solid #51C2FF; }
+.socialMedia a:hover i { color: #51C2FF; }
+@media(max-width: 900px){
+    .container .row{ flex-wrap: wrap; }
+    .row section.left, .row section.right{ flex-basis: 100%; margin-right: 0px; margin-bottom: 30px; }
+    .row section.left:last-child, .row section.right:last-child{ margin-bottom: 0; }
+}
